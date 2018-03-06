@@ -54,7 +54,7 @@ export default class BuyScreen extends React.Component {
 					 ref={(ref) => { this.webview = ref; }}
            source={{ uri }}
 					 onNavigationStateChange={(event) => {
-          if (event.url.substring(0, 30) == 'http://159.89.95.28:5050/books') {
+          if (event.url != '0') {
             this.webview.stopLoading();
             Linking.openURL(event.url);
           }}
