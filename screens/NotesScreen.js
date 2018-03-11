@@ -8,7 +8,8 @@ import {
 	AsyncStorage,
 	Image,
 	Button,
-	Modal
+	Modal,
+	Share
 } from 'react-native';
 import SingleNoteBox from '../components/SingleNoteBox';
 import Colors from '../constants/Colors';
@@ -100,7 +101,20 @@ export default class NotesScreen extends React.Component {
 render_options = () =>{
 
 }
-
+onClick() {
+  Share.share({
+    message: 'Fastrack : You can buy the note from here : '+Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+' and for more notes download Fastrack : https://play.google.com/store/apps/details?id=com.Fastrack.GarashSoftwareHouse',
+    url: 'https://play.google.com/store/apps/details?id=com.Fastrack.GarashSoftwareHouse',
+    title: 'https://play.google.com/store/apps/details?id=com.Fastrack.GarashSoftwareHouse'
+  }, {
+    // Android only:
+    dialogTitle: 'Share Fastrack',
+    // iOS only:
+    excludedActivityTypes: [
+      'com.apple.UIKit.activity.PostToTwitter'
+    ]
+  })
+}
 
 	openModal(id) {
     this.setState({modalVisible:true,CurentOpenedId:id});
@@ -126,6 +140,7 @@ render_options = () =>{
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
+			if(this.state.Subjects.length != 0){
 		return (
 
 
@@ -151,7 +166,7 @@ render_options = () =>{
                 <Text   style={styles.button}>Free Browsing</Text>
                 </TouchableOpacity>
 								<TouchableOpacity
-                    onPress={() => this.make_order()}
+                    onPress={() => this.onClick()}
                 >
                 <Text   style={styles.button}>Share</Text>
                 </TouchableOpacity>
@@ -192,6 +207,13 @@ render_options = () =>{
 			</View>
 		);
 	}
+
+else{
+	return(
+		<Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',fontSize:14,fontFamily:'myfont',marginTop:240}}>No Notes here check other categories</Text>
+	)
+}
+}
 }
 const styles = StyleSheet.create({
 

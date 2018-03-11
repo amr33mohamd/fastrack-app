@@ -2,6 +2,7 @@
 
   "expo": {
     "name": "fastrack",
+    "scheme": "fastrack",
     "description": "Selling Notes App.",
     "slug": "fastrack-v4",
     "privacy": "public",
@@ -23,6 +24,7 @@
       "permissions": [ "MANAGE_DOCUMENTS", "READ_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE" ],
       "versionCode": 2
     },
+
 
 
   }

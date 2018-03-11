@@ -9,6 +9,7 @@ import NotesScreen from '../screens/NotesScreen'
 import ImagesScreen from '../screens/ImagesScreen'
 import BuyScreen from '../screens/BuyScreen'
 import SearchScreen from '../screens/SearchScreen'
+import SectorsScreen from '../screens/SectorsScreen'
 
 const RootStackNavigator = StackNavigator(
   {
@@ -30,6 +31,9 @@ const RootStackNavigator = StackNavigator(
     },
     SearchScreen: {
       screen: SearchScreen,
+    },
+    SectorsScreen: {
+      screen: SectorsScreen,
     },
   },
   {
