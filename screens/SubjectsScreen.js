@@ -63,18 +63,20 @@ var styles = StyleSheet.create({
 export default class HomeScreen extends React.Component {
 
 
-  static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-		title: 'التذاكر',
-
-
-
-		headerTitleStyle: {
-			fontWeight: '300',
-			color: '#ffffff',
-			fontFamily: 'myfont',
-			fontSize: 16
-		}
+	static navigationOptions = ({ navigation }) => ({
+		title:'subjects',
+		headerTintColor: Colors.smoothGray,
+		fontFamily:'myfont',
+	headerStyle: {
+		backgroundColor: Colors.mainColor,
+		marginTop:-25
+	},
+	headerTitleStyle: {
+		fontWeight: '300',
+		color: '#ffffff',
+		fontFamily: 'myfont',
+		fontSize: 16
+	},
 	});
 	componentDidMount() {
 

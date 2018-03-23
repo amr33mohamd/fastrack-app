@@ -22,19 +22,21 @@ import Header from '../components/Header';
 export default class BuyScreen extends React.Component {
 
 
-  static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-    title: 'التذاكر',
-
-
-
-    headerTitleStyle: {
-      fontWeight: '300',
-      color: '#ffffff',
-      fontFamily: 'myfont',
-      fontSize: 16
-    }
-  });
+	static navigationOptions = ({ navigation }) => ({
+		title:'Buy Now',
+		headerTintColor: Colors.smoothGray,
+		fontFamily:'myfont',
+	headerStyle: {
+		backgroundColor: Colors.mainColor,
+		marginTop:-25
+	},
+	headerTitleStyle: {
+		fontWeight: '300',
+		color: '#ffffff',
+		fontFamily: 'myfont',
+		fontSize: 16
+	},
+	});
 
 
 //Server.dest+'/buy-first?id='+this.props.navigation.state.params.id

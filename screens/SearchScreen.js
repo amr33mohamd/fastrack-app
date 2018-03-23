@@ -71,19 +71,21 @@ export default class SearchScreen extends React.Component {
 	 this.props.navigation.navigate('BuyScreen',{key:this.state.CurentOpenedId});
 	 this.closeModal();
  }
-  static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-		title: 'التذاكر',
-
-
-
-		headerTitleStyle: {
-			fontWeight: '300',
-			color: '#ffffff',
-			fontFamily: 'myfont',
-			fontSize: 16
-		}
-	});
+ static navigationOptions = ({ navigation }) => ({
+ 	title:'Search Result',
+ 	headerTintColor: Colors.smoothGray,
+ 	fontFamily:'myfont',
+ headerStyle: {
+ 	backgroundColor: Colors.mainColor,
+ 	marginTop:-25
+ },
+ headerTitleStyle: {
+ 	fontWeight: '300',
+ 	color: '#ffffff',
+ 	fontFamily: 'myfont',
+ 	fontSize: 16
+ },
+ });
 	componentDidMount() {
 
     fetch(Server.dest + '/api/searchnotes?id='+this.props.navigation.state.params.name).then((res)=>res.json()).then((supjects)=>{

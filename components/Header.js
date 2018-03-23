@@ -35,6 +35,7 @@ export default class Header extends React.Component {
 
 		return (
 			<View style={styles.container}>
+
       <View style={styles.box}>
 
 					<TextInput
@@ -62,7 +63,7 @@ export default class Header extends React.Component {
 }
 var styles = StyleSheet.create({
 	container: {
-		backgroundColor: Colors.mainColor
+		backgroundColor: Colors.mainColor,
 	},
 	topbox: {
 		marginTop: Platform.OS === 'ios' ? 20 : 0,

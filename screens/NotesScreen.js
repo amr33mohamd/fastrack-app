@@ -72,19 +72,21 @@ export default class NotesScreen extends React.Component {
 	 this.props.navigation.navigate('BuyScreen',{key:this.state.CurentOpenedId});
 	 this.closeModal();
  }
-  static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-		title: 'التذاكر',
-
-
-
-		headerTitleStyle: {
-			fontWeight: '300',
-			color: '#ffffff',
-			fontFamily: 'myfont',
-			fontSize: 16
-		}
-	});
+ static navigationOptions = ({ navigation }) => ({
+	 title:'Notes',
+	 headerTintColor: Colors.smoothGray,
+	 fontFamily:'myfont',
+ headerStyle: {
+	 backgroundColor: Colors.mainColor,
+	 marginTop:-25
+ },
+ headerTitleStyle: {
+	 fontWeight: '300',
+	 color: '#ffffff',
+	 fontFamily: 'myfont',
+	 fontSize: 16
+ },
+ });
 	componentDidMount() {
 
     fetch(Server.dest + '/api/notes?id='+this.props.navigation.state.params.key).then((res)=>res.json()).then((supjects)=>{

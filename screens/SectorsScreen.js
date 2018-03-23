@@ -7,8 +7,10 @@ import {
 	TouchableOpacity,
 	AsyncStorage,
 	Image,
-	Button
+	Button,
+	Platform
 } from 'react-native';
+import Expo from 'expo';
 import SingleSubjectBox from '../components/SingleSubjectBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
@@ -63,18 +65,20 @@ var styles = StyleSheet.create({
 export default class SectorsScreen extends React.Component {
 
 
-  static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-		title: 'التذاكر',
-
-
-
-		headerTitleStyle: {
-			fontWeight: '300',
-			color: '#ffffff',
-			fontFamily: 'myfont',
-			fontSize: 16
-		}
+	static navigationOptions = ({ navigation }) => ({
+		title:'Sectors',
+		headerTintColor: Colors.smoothGray,
+		fontFamily:'myfont',
+	headerStyle: {
+		backgroundColor: Colors.mainColor,
+		marginTop:-25
+	},
+	headerTitleStyle: {
+		fontWeight: '300',
+		color: '#ffffff',
+		fontFamily: 'myfont',
+		fontSize: 16
+	},
 	});
 	componentDidMount() {
 
