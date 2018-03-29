@@ -97,6 +97,7 @@ export default class HomeScreen extends React.Component {
 
 	constructor(props) {
 		super(props);
+		console.log(Expo.Constants.deviceId)
 		this.state = {
 			doneFetches: 0,
 			Uninveristies: [

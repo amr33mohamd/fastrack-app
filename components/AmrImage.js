@@ -23,7 +23,7 @@ export default class AmrImage extends Component {
 		return (
 
 				<Image
-					style={{ flex: 1, height: 300, borderRadius: 10 }}
+					style={{ flex: 1, height: 1000, borderRadius: 10 }}
 					source={{ uri: this.props.image }}
 				/>
 

@@ -120,6 +120,7 @@ export default class HomeScreen extends React.Component {
 						<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
 					)}
 					data={this.state.Subjects}
+					
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => navigate('NotesScreen', { key: item.id })}

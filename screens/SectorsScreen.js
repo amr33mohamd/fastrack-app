@@ -122,6 +122,7 @@ export default class SectorsScreen extends React.Component {
 						<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
 					)}
 					data={this.state.Subjects}
+				
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => navigate('SubjectsScreen', { key: item.id })}

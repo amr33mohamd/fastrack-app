@@ -17,7 +17,7 @@ import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../components/Header';
-import SingleSubjectBox from '../components/SingleSubjectBox';
+
 var styles = StyleSheet.create({
 	box: {
 		height: 45,
@@ -89,7 +89,7 @@ export default class NotesScreen extends React.Component {
  });
 	componentDidMount() {
 
-    fetch(Server.dest + '/api/notes?id='+this.props.navigation.state.params.key).then((res)=>res.json()).then((supjects)=>{
+    fetch(Server.dest + '/api/freenotes?id='+this.props.navigation.state.params.key).then((res)=>res.json()).then((supjects)=>{
 								this.setState({
 									doneFetches: 1,
 									Subjects: supjects
@@ -160,13 +160,9 @@ onClick() {
                 <TouchableOpacity
                     onPress={() => this.make_order()}
                 >
-                <Text   style={styles.button}>Buy Now</Text>
+                <Text   style={styles.button}>Download Now</Text>
                 </TouchableOpacity>
-								<TouchableOpacity
-                    onPress={() => this.browse()}
-                >
-                <Text   style={styles.button}>Free Browsing</Text>
-                </TouchableOpacity>
+
 								<TouchableOpacity
                     onPress={() => this.onClick()}
                 >
@@ -191,21 +187,7 @@ onClick() {
 					)}
 					data={this.state.Subjects}
           keyExtractor={this._keyExtractor}
-					ListHeaderComponent = {()=>(
 
-						<TouchableOpacity
-							onPress={() => navigate('FreeNotesScreen', { key: this.props.navigation.state.params.key })}
-							activeOpacity={0.7}
-							style={{
-									borderBottomWidth:5,
-									borderBottomColor:Colors.smoothGray
-							}}
-						>
-							<SingleSubjectBox
-								name="Free Notes"
-							/>
-						</TouchableOpacity>
-					)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => this.openModal(item.id)}

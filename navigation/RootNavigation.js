@@ -10,31 +10,22 @@ import ImagesScreen from '../screens/ImagesScreen'
 import BuyScreen from '../screens/BuyScreen'
 import SearchScreen from '../screens/SearchScreen'
 import SectorsScreen from '../screens/SectorsScreen'
+import FreeNotesScreen from '../screens/FreeNotesScreen'
+import SingleNoteScreen from '../screens/SingleNoteScreen'
 
 const RootStackNavigator = StackNavigator(
   {
 
-    Main: {
-      screen: MainTabNavigator,
-    },
-    SubjectsScreen: {
-      screen: SubjectsScreen,
-    },
-    NotesScreen: {
-      screen: NotesScreen,
-    },
-    ImagesScreen: {
-      screen: ImagesScreen,
-    },
-    BuyScreen: {
-      screen: BuyScreen,
-    },
-    SearchScreen: {
-      screen: SearchScreen,
-    },
-    SectorsScreen: {
-      screen: SectorsScreen,
-    },
+    Main: {screen: MainTabNavigator},
+    SubjectsScreen: {screen: SubjectsScreen},
+    NotesScreen: {screen: NotesScreen},
+    ImagesScreen: {screen: ImagesScreen},
+    BuyScreen: {screen: BuyScreen},
+    SearchScreen: {screen: SearchScreen},
+    SectorsScreen: {screen: SectorsScreen},
+    FreeNotesScreen: {screen: FreeNotesScreen},
+    SingleNoteScreen: {screen: SingleNoteScreen},
+
   },
   {
     navigationOptions: () => ({

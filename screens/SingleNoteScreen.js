@@ -21,7 +21,7 @@ export default class ImagesScreen extends React.Component {
 
 
 	static navigationOptions = ({ navigation }) => ({
-		title:'Free Browsing',
+		title:'Browsing Note',
 		headerTintColor: Colors.smoothGray,
 		fontFamily:'myfont',
 	headerStyle: {
@@ -38,7 +38,8 @@ export default class ImagesScreen extends React.Component {
 	componentDidMount() {
 
 
-    fetch(Server.dest + '/api/images?id='+this.props.navigation.state.params.key).then((res)=>res.json()).then((supjects)=>{
+    fetch(Server.dest + '/view-note?id='+this.props.navigation.state.params.id).then((res)=>res.json()).then((supjects)=>{
+			console.log(this.props.navigation.state.params.id)
 								this.setState({
 									doneFetches: 1,
 									Subjects: supjects

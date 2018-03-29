@@ -8,15 +8,20 @@ import Header from '../components/Header';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import ContactusScreen from '../screens/SettingsScreen';
+import MyNotes from '../screens/MyNotesScreen';
+
 export default TabNavigator(
   {
     Home: {
       screen: HomeScreen,
     },
-
+    Notes: {
+      screen: MyNotes,
+    },
     Settings: {
       screen: ContactusScreen,
     },
+
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -31,7 +36,7 @@ export default TabNavigator(
                 ? `ios-home${focused ? '' : '-outline'}`
                 : 'md-home';
             break;
-          case 'Links':
+          case 'Notes':
             iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
             break;
           case 'Settings':

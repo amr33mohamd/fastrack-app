@@ -1,4 +1,5 @@
 import React from 'react';
+import Expo, { Constants, WebBrowser } from 'expo';
 import {
 	Text,
 	View,
@@ -46,7 +47,8 @@ export default class BuyScreen extends React.Component {
 	}
 
 	render() {
-		const uri = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key;
+		const uri = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+Expo.Constants.deviceId;
+		// const uri = "https://mozilla.github.io/pdf.js/web/viewer.html"
 		return (
 
       <View style={{ flex: 1 }}>
@@ -56,9 +58,9 @@ export default class BuyScreen extends React.Component {
 					 ref={(ref) => { this.webview = ref; }}
            source={{ uri }}
 					 onNavigationStateChange={(event) => {
-          if (event.url != '0') {
+          if (event.url == 'http://example.com') {
             this.webview.stopLoading();
-            Linking.openURL(event.url);
+            this.props.navigation.navigate('Notes')
           }}
 				}
 					 />

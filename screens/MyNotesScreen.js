@@ -11,6 +11,7 @@ import {
 	Modal,
 	Share
 } from 'react-native';
+import Expo, { Constants, WebBrowser } from 'expo';
 import SingleNoteBox from '../components/SingleNoteBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
@@ -62,7 +63,11 @@ var styles = StyleSheet.create({
 	}
 });
 
-export default class NotesScreen extends React.Component {
+export default class MyNotesScreen extends React.Component {
+	_handlePressButtonAsync = async (id) => {
+	    let result = await WebBrowser.openBrowserAsync(Server.dest + '/view-note?id='+id);
+	    this.setState({ result });
+	  };
 
  browse = ()=>{
 	 this.props.navigation.navigate('ImagesScreen',{key:this.state.CurentOpenedId});
@@ -73,7 +78,7 @@ export default class NotesScreen extends React.Component {
 	 this.closeModal();
  }
  static navigationOptions = ({ navigation }) => ({
-	 title:'Notes',
+	 title:'MyNotes',
 	 headerTintColor: Colors.smoothGray,
 	 fontFamily:'myfont',
  headerStyle: {
@@ -89,7 +94,7 @@ export default class NotesScreen extends React.Component {
  });
 	componentDidMount() {
 
-    fetch(Server.dest + '/api/notes?id='+this.props.navigation.state.params.key).then((res)=>res.json()).then((supjects)=>{
+    fetch(Server.dest + '/api/mynotes?id='+Expo.Constants.deviceId).then((res)=>res.json()).then((supjects)=>{
 								this.setState({
 									doneFetches: 1,
 									Subjects: supjects
@@ -130,6 +135,7 @@ onClick() {
 			doneFetches: 0,
 			modalVisible: false,
 			CurentOpenedId:0,
+			result: null,
 			Subjects: [
 
       ],
@@ -147,40 +153,7 @@ onClick() {
 
 
 			<View>
-			<Modal
-              visible={this.state.modalVisible}
-              animationType={'slide'}
-              onRequestClose={() => this.closeModal()}
-          >
-            <View style={styles.modalContainer}>
-              <View style={styles.innerContainer}>
-                <Text style={{fontFamily:'myfont',fontSize:25}}>Confirm buying the note</Text>
-                <View style={styles.buttons}>
 
-                <TouchableOpacity
-                    onPress={() => this.make_order()}
-                >
-                <Text   style={styles.button}>Buy Now</Text>
-                </TouchableOpacity>
-								<TouchableOpacity
-                    onPress={() => this.browse()}
-                >
-                <Text   style={styles.button}>Free Browsing</Text>
-                </TouchableOpacity>
-								<TouchableOpacity
-                    onPress={() => this.onClick()}
-                >
-                <Text   style={styles.button}>Share</Text>
-                </TouchableOpacity>
-								<TouchableOpacity
-                    onPress={() => this.closeModal()}
-                >
-                <Text   style={styles.button}>Close</Text>
-                </TouchableOpacity>
-                </View>
-              </View>
-            </View>
-          </Modal>
 
 				<FlatList
 					automaticallyAdjustContentInsets={false}
@@ -191,24 +164,10 @@ onClick() {
 					)}
 					data={this.state.Subjects}
           keyExtractor={this._keyExtractor}
-					ListHeaderComponent = {()=>(
 
-						<TouchableOpacity
-							onPress={() => navigate('FreeNotesScreen', { key: this.props.navigation.state.params.key })}
-							activeOpacity={0.7}
-							style={{
-									borderBottomWidth:5,
-									borderBottomColor:Colors.smoothGray
-							}}
-						>
-							<SingleSubjectBox
-								name="Free Notes"
-							/>
-						</TouchableOpacity>
-					)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
-							onPress={() => this.openModal(item.id)}
+							onPress={() => this.props.navigation.navigate('SingleNoteScreen',{id:item.id})}
 							activeOpacity={0.7}
 						>
 							<SingleNoteBox
@@ -220,6 +179,8 @@ onClick() {
 						</TouchableOpacity>
 					)}
 				/>
+				<Text>{this.state.result && JSON.stringify(this.state.result)}</Text>
+
 			</View>
 		);
 	}
