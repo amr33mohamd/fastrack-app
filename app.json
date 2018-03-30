@@ -23,7 +23,7 @@
     "android": {
       "package": "com.Fastrack.GarashSoftwareHouse",
       "permissions": [ "MANAGE_DOCUMENTS", "READ_EXTERNAL_STORAGE", "READ_INTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE" ],
-      "versionCode": 2
+      "versionCode": 3
     },
 
 
