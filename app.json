@@ -2,9 +2,9 @@
 
   "expo": {
     "name": "Fastrack App",
-    "scheme": "Fastrack App",
+    "scheme": "fastrackapp",
     "description": "Selling Notes App.",
-    "slug": "FastrackApp",
+    "slug": "fastrackapp",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
