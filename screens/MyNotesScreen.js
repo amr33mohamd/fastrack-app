@@ -187,7 +187,7 @@ onClick() {
 
 else{
 	return(
-		<Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',fontSize:14,fontFamily:'myfont',marginTop:240}}>No Notes here check other categories</Text>
+		<Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',fontSize:14,fontFamily:'myfont',marginTop:240}}>You still did not bought any notes yet</Text>
 	)
 }
 }

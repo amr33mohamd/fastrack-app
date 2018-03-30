@@ -47,8 +47,8 @@ export default class BuyScreen extends React.Component {
 	}
 
 	render() {
-		const uri = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+Expo.Constants.deviceId;
-		// const uri = "https://mozilla.github.io/pdf.js/web/viewer.html"
+		 const uri = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+Expo.Constants.deviceId;
+		// const uri = "http://example.com"
 		return (
 
       <View style={{ flex: 1 }}>
@@ -58,7 +58,7 @@ export default class BuyScreen extends React.Component {
 					 ref={(ref) => { this.webview = ref; }}
            source={{ uri }}
 					 onNavigationStateChange={(event) => {
-          if (event.url == 'http://example.com') {
+          if (event.url == 'http://example.com/') {
             this.webview.stopLoading();
             this.props.navigation.navigate('Notes')
           }}
