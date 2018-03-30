@@ -4,7 +4,7 @@
     "name": "Fastrack App",
     "scheme": "Fastrack App",
     "description": "Selling Notes App.",
-    "slug": "Fastrack App",
+    "slug": "FastrackApp",
     "privacy": "public",
     "sdkVersion": "25.0.0",
     "platforms": ["ios", "android"],
