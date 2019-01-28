@@ -9,7 +9,8 @@ import {
 	Image,
 	Button,
 	Modal,
-	Share
+	Share,
+	Linking
 } from 'react-native';
 import SingleNoteBox from '../components/SingleNoteBox';
 import Colors from '../constants/Colors';
@@ -68,8 +69,14 @@ export default class NotesScreen extends React.Component {
 	 this.props.navigation.navigate('ImagesScreen',{key:this.state.CurentOpenedId});
 	 this.closeModal();
  }
+
  make_order = ()=>{
-	 this.props.navigation.navigate('BuyScreen',{key:this.state.CurentOpenedId});
+	 AsyncStorage.getItem('id').then((id)=>{
+		 fetch(Server.dest + '/free-view-note?id='+this.state.CurentOpenedId+'&deviceid='+id).then((res)=>res.json()).then((supjects)=>{
+			 this.props.navigation.navigate('Notes')
+							});
+	 })
+
 	 this.closeModal();
  }
  static navigationOptions = ({ navigation }) => ({
@@ -160,7 +167,7 @@ onClick() {
                 <TouchableOpacity
                     onPress={() => this.make_order()}
                 >
-                <Text   style={styles.button}>Download Now</Text>
+                <Text   style={styles.button}>Get Now</Text>
                 </TouchableOpacity>
 
 								<TouchableOpacity

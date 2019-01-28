@@ -93,13 +93,15 @@ export default class MyNotesScreen extends React.Component {
  },
  });
 	componentDidMount() {
-
-    fetch(Server.dest + '/api/mynotes?id='+Expo.Constants.deviceId).then((res)=>res.json()).then((supjects)=>{
-								this.setState({
-									doneFetches: 1,
-									Subjects: supjects
+		AsyncStorage.getItem('id').then((id)=>{
+			fetch(Server.dest + '/api/mynotes?id='+id).then((res)=>res.json()).then((supjects)=>{
+									this.setState({
+										doneFetches: 1,
+										Subjects: supjects
+									});
 								});
-							});
+		})
+
 	}
 
 
