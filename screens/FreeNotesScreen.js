@@ -9,7 +9,8 @@ import {
 	Image,
 	Button,
 	Modal,
-	Share
+	Share,
+	Platform
 } from 'react-native';
 import SingleNoteBox from '../components/SingleNoteBox';
 import Colors from '../constants/Colors';
@@ -78,7 +79,15 @@ export default class NotesScreen extends React.Component {
 	 fontFamily:'myfont',
  headerStyle: {
 	 backgroundColor: Colors.mainColor,
-	 marginTop:-25
+	 ...Platform.select({
+		 ios: {
+				marginTop:-8
+			},
+		 android:{
+			 marginTop:-25,
+		 }
+
+		}),
  },
  headerTitleStyle: {
 	 fontWeight: '300',

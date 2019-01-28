@@ -7,6 +7,7 @@ import {
 	Text,
 	AsyncStorage,
 	TouchableOpacity,
+
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
@@ -86,7 +87,13 @@ var styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		alignItems: 'center',
 		marginVertical: 12,
-		marginHorizontal: 10
+		marginHorizontal: 10,
+		...Platform.select({
+      ios: {
+        marginTop:30
+      },
+
+    }),
 	},
 
 	input: {

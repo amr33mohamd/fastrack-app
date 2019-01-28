@@ -7,7 +7,8 @@ import {
 	TouchableOpacity,
 	AsyncStorage,
 	Image,
-	Button
+	Button,
+	Platform
 } from 'react-native';
 import SingleSubjectBox from '../components/SingleSubjectBox';
 import Colors from '../constants/Colors';
@@ -68,8 +69,17 @@ export default class HomeScreen extends React.Component {
 		headerTintColor: Colors.smoothGray,
 		fontFamily:'myfont',
 	headerStyle: {
+		...Platform.select({
+			ios: {
+        marginTop:-8
+      },
+			android:{
+				marginTop:-25,
+			}
+
+    }),
+
 		backgroundColor: Colors.mainColor,
-		marginTop:-25
 	},
 	headerTitleStyle: {
 		fontWeight: '300',
@@ -120,7 +130,7 @@ export default class HomeScreen extends React.Component {
 						<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
 					)}
 					data={this.state.Subjects}
-					
+
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => navigate('NotesScreen', { key: item.id })}

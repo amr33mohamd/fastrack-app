@@ -71,7 +71,14 @@ export default class SectorsScreen extends React.Component {
 		fontFamily:'myfont',
 	headerStyle: {
 		backgroundColor: Colors.mainColor,
-		marginTop:-25
+		...Platform.select({
+      ios: {
+        marginTop:-8
+      },
+			android:{
+				marginTop:-25,
+			}
+    }),
 	},
 	headerTitleStyle: {
 		fontWeight: '300',
@@ -122,7 +129,7 @@ export default class SectorsScreen extends React.Component {
 						<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
 					)}
 					data={this.state.Subjects}
-				
+
 					renderItem={({ item }) => (
 						<TouchableOpacity
 							onPress={() => navigate('SubjectsScreen', { key: item.id })}

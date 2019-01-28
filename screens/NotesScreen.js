@@ -1,15 +1,13 @@
 import React from 'react';
 import {
 	Text,
-	View,
 	StyleSheet,
 	FlatList,
 	TouchableOpacity,
 	AsyncStorage,
-	Image,
-	Button,
 	Modal,
-	Share
+	Share,
+	Platform
 } from 'react-native';
 import SingleNoteBox from '../components/SingleNoteBox';
 import Colors from '../constants/Colors';
@@ -18,6 +16,8 @@ import LoadingIndicator from '../components/LoadingIndicator';
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../components/Header';
 import SingleSubjectBox from '../components/SingleSubjectBox';
+import { ListView,ImageBackground,Tile,Divider,Title,Subtitle,Caption,Icon,Button,Image,Row,View } from '@shoutem/ui';
+import {View as View2} from 'react-native'
 var styles = StyleSheet.create({
 	box: {
 		height: 45,
@@ -78,7 +78,15 @@ export default class NotesScreen extends React.Component {
 	 fontFamily:'myfont',
  headerStyle: {
 	 backgroundColor: Colors.mainColor,
-	 marginTop:-25
+	 ...Platform.select({
+		 ios: {
+				marginTop:-8
+			},
+		 android:{
+			 marginTop:-25,
+		 }
+
+		}),
  },
  headerTitleStyle: {
 	 fontWeight: '300',
@@ -152,10 +160,10 @@ onClick() {
               animationType={'slide'}
               onRequestClose={() => this.closeModal()}
           >
-            <View style={styles.modalContainer}>
-              <View style={styles.innerContainer}>
+            <View2 style={styles.modalContainer}>
+              <View2 style={styles.innerContainer}>
                 <Text style={{fontFamily:'myfont',fontSize:25}}>Confirm buying the note</Text>
-                <View style={styles.buttons}>
+                <View2 style={styles.buttons}>
 
                 <TouchableOpacity
                     onPress={() => this.make_order()}
@@ -177,9 +185,9 @@ onClick() {
                 >
                 <Text   style={styles.button}>Close</Text>
                 </TouchableOpacity>
-                </View>
-              </View>
-            </View>
+                </View2>
+              </View2>
+            </View2>
           </Modal>
 
 				<FlatList
@@ -201,9 +209,11 @@ onClick() {
 									borderBottomColor:Colors.smoothGray
 							}}
 						>
+
 							<SingleSubjectBox
 								name="Free Notes"
 							/>
+
 						</TouchableOpacity>
 					)}
 					renderItem={({ item }) => (
@@ -211,12 +221,30 @@ onClick() {
 							onPress={() => this.openModal(item.id)}
 							activeOpacity={0.7}
 						>
-							<SingleNoteBox
-								name={item.name}
-                price={item.price}
-                image={item.image}
-                desc={item.description}
-							/>
+						{
+							// <SingleNoteBox
+							// 	name={item.name}
+              //   price={item.price}
+              //   image={item.image}
+              //   desc={item.description}
+							// />
+						}
+						<Row>
+
+						<Image
+		styleName="small rounded-corners"
+		source={{ uri: item.image }}
+	/>
+	<View styleName="vertical stretch space-between">
+		<Subtitle style={{fontSize:17}}>{item.name} | {item.description}</Subtitle>
+
+		<View styleName="horizontal">
+			<Subtitle styleName="md-gutter-right">{item.price} kwd</Subtitle>
+		</View>
+	</View>
+	<Button styleName="right-icon"><Icon name="add-to-cart" /></Button>
+	</Row>
+
 						</TouchableOpacity>
 					)}
 				/>

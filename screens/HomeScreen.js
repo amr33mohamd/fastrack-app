@@ -17,6 +17,7 @@ import Colors from '../constants/Colors';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { Ionicons } from '@expo/vector-icons';
+import { ListView,ImageBackground,Tile,Divider,Title,Subtitle,Caption } from '@shoutem/ui';
 
 var styles = StyleSheet.create({
 	box: {
@@ -106,6 +107,25 @@ export default class HomeScreen extends React.Component {
 
 		};
 	}
+	renderRow = (restaurant)=> {
+
+  return (
+		<TouchableOpacity
+				activeOpacity={0.9}
+					onPress={() => this.props.navigation.navigate('SectorsScreen', { key: restaurant.id })}
+				>
+		      <ImageBackground
+        styleName="large-banner"
+        source={{ uri: restaurant.image }}
+      >
+        <Tile >
+          <Caption styleName="sm-gutter-horizontal" style={{fontSize:27,color:'white',fontWeight:'bold'}}>{restaurant.name}</Caption>
+        </Tile>
+      </ImageBackground>
+      <Divider styleName="line" />
+    </TouchableOpacity>
+  );
+}
 
 	render() {
 		const { navigate } = this.props.navigation;
@@ -114,28 +134,33 @@ export default class HomeScreen extends React.Component {
 
 		return (
 			<View>
-
-				<FlatList
-					automaticallyAdjustContentInsets={false}
-					style={{ backgroundColor: 'white' }}
-					removeClippedSubviews={false}
-					ItemSeparatorComponent={() => (
-						<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
-					)}
-          keyExtractor={this._keyExtractor}
-					data={this.state.Uninveristies}
-					renderItem={({ item }) => (
-						<TouchableOpacity
-						activeOpacity={0.7}
-							onPress={() => navigate('SectorsScreen', { key: item.id })}
-						>
-							<UniveristyBox
-								name={item.name}
-								image={item.image}
-							/>
-						</TouchableOpacity>
-					)}
-				/>
+			<ListView
+			        data={this.state.Uninveristies}
+			        renderRow={this.renderRow}
+			      />
+{
+				// <FlatList
+				// 	automaticallyAdjustContentInsets={false}
+				// 	style={{ backgroundColor: 'white' }}
+				// 	removeClippedSubviews={false}
+				// 	ItemSeparatorComponent={() => (
+				// 		<View style={{ height: 5,backgroundColor: Colors.smoothGray  }} />
+				// 	)}
+        //   keyExtractor={this._keyExtractor}
+				// 	data={this.state.Uninveristies}
+				// 	renderItem={({ item }) => (
+				// 		<TouchableOpacity
+				// 		activeOpacity={0.7}
+				// 			onPress={() => navigate('SectorsScreen', { key: item.id })}
+				// 		>
+				// 			<UniveristyBox
+				// 				name={item.name}
+				// 				image={item.image}
+				// 			/>
+				// 		</TouchableOpacity>
+				// 	)}
+				// />
+			}
 			</View>
 		);
 	}
