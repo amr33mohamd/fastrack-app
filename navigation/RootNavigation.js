@@ -12,10 +12,10 @@ import SearchScreen from '../screens/SearchScreen'
 import SectorsScreen from '../screens/SectorsScreen'
 import FreeNotesScreen from '../screens/FreeNotesScreen'
 import SingleNoteScreen from '../screens/SingleNoteScreen'
-
+import WelcomeScreen from '../screens/WelcomeScreen'
 const RootStackNavigator = StackNavigator(
   {
-
+    WelcomeScreen: {screen: WelcomeScreen},
     Main: {screen: MainTabNavigator},
     SubjectsScreen: {screen: SubjectsScreen},
     NotesScreen: {screen: NotesScreen},

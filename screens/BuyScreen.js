@@ -39,15 +39,36 @@ export default class BuyScreen extends React.Component {
 	},
 	});
 
+get_uri = ()=>{
+	AsyncStorage.getItem('id').then((id)=>{
 
+		var	uri  = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+id;
+		return uri;
+	})
+}
 //Server.dest+'/buy-first?id='+this.props.navigation.state.params.id
 	constructor(props) {
 		super(props);
+		this.state = {
+			doneFetches: 0,
 
+
+		};
 	}
 
 	render() {
-		 const uri = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+Expo.Constants.deviceId;
+
+		AsyncStorage.getItem('id').then((id)=>{
+
+			const	uri  = Server.dest+'/buy-first?id='+this.props.navigation.state.params.key+'&deviceId='+id;
+			this.setState({
+				uri,
+				doneFetches:1
+			})
+		})
+		if (this.state.doneFetches == 0)
+			return <LoadingIndicator size="large" color={Colors.mainColor} />;
+
 		// const uri = "http://example.com"
 		return (
 
@@ -56,7 +77,7 @@ export default class BuyScreen extends React.Component {
            bounces={false}
            scrollEnabled={true}
 					 ref={(ref) => { this.webview = ref; }}
-           source={{ uri }}
+           source={{  uri:this.state.uri}}
 					 onNavigationStateChange={(event) => {
           if (event.url == 'http://example.com/') {
             this.webview.stopLoading();
